@@ -19,8 +19,8 @@ public class NotaneitorTests {
 	
 	//En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioens automáticas)):
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\Paco\\Desktop\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
-	
+	static String Geckdriver024 = "D:\\Desktop\\CVVS-MAYO\\geckodriver024win64.exe";
+
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 	
@@ -31,7 +31,7 @@ public class NotaneitorTests {
 		return driver;
 	}
 	
-	
+
 	//Antes de cada prueba se navega al URL home de la aplicación
 	@Before
 	public void setUp() throws Exception {
