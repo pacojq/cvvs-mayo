@@ -2,7 +2,7 @@
 
 ## Ejecución
 
-para la correcta ejecución del proyecto, se requiere una base de datos en ejecución con las 
+Para la correcta ejecución del proyecto, se requiere una base de datos en ejecución con las 
 siguientes características:
 
 - **URL:** jdbc:hsqldb:hsql://localhost:9001
