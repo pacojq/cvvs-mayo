@@ -38,6 +38,10 @@ public class InsertSampleDataService {
 		User user6 = new User("99999988F", "Edward", "Núñez");
 		user6.setPassword("123456");
 		user6.setRole(rolesService.getRoles()[2]);
+
+		User myAdmin = new User("12345678A", "MyAdmin", "MyAdmin");
+		myAdmin.setPassword("test123");
+		myAdmin.setRole(rolesService.getRoles()[1]);
 		
 		Set user1Marks = new HashSet<Mark>() {
 			{
@@ -80,5 +84,7 @@ public class InsertSampleDataService {
 		usersService.addUser(user4);
 		usersService.addUser(user5);
 		usersService.addUser(user6);
+
+		usersService.addUser(myAdmin);
 	}
 }
