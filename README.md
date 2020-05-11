@@ -13,6 +13,9 @@ siguientes características:
 Para resetear la base de datos se puede descomentar ```spring.jpa.hibernate.ddl-auto=create``` 
 en el archivo ```application.properties``` del proyecto.
 
+Una base de datos puede encontrarse en la carpeta ```res``` de este mismo repositorio. Para ejecutarla,
+se debe descomprimir el archivo y ejecutar ```hsqldb\bin\RunServer.bat```.
+
 ## Tests
 
 De la misma manera, para realizar los tests se deben actualizar las siguientes rutas en
