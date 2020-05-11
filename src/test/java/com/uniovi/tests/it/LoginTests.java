@@ -3,7 +3,6 @@ package com.uniovi.tests.it;
 import com.uniovi.tests.AbstractTest;
 import com.uniovi.tests.pageobjects.*;
 import com.uniovi.tests.util.SeleniumUtils;
-import org.aspectj.lang.annotation.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -16,7 +15,7 @@ public class LoginTests extends AbstractTest {
     @Test
     public void TC1_TestValidLogin() {
 
-        NavigateToLogin();
+        navigateToLogin();
 
         PO_LoginView.fillForm(driver, "99999990A", "123456");
         SeleniumUtils.esperarSegundos(driver, 1);
@@ -30,7 +29,7 @@ public class LoginTests extends AbstractTest {
             failed = true;
         }
 
-        Logout();
+        logout();
 
         if (failed) {
             Assert.fail();
@@ -40,7 +39,7 @@ public class LoginTests extends AbstractTest {
     @Test
     public void TC2_TestIncorrectPassword() {
 
-        NavigateToLogin();
+        navigateToLogin();
 
         PO_LoginView.fillForm(driver, "99999990A", "potato");
         SeleniumUtils.esperarSegundos(driver, 1);
@@ -55,7 +54,7 @@ public class LoginTests extends AbstractTest {
     @Test
     public void TC3_TestNonExistentUser() {
 
-        NavigateToLogin();
+        navigateToLogin();
 
         PO_LoginView.fillForm(driver, "MrPotato", "123456");
         SeleniumUtils.esperarSegundos(driver, 1);

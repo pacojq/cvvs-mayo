@@ -1,6 +1,8 @@
 package com.uniovi.tests.pageobjects;
 
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.*;
 import com.uniovi.tests.util.SeleniumUtils;
@@ -78,6 +80,6 @@ public class PO_HomeView extends PO_View {
 		// Esperamos a que se cargue el saludo de bienvenida en Español
 		PO_HomeView.checkWelcome(driver, locale1);
 	}
-	
+
 	
 }

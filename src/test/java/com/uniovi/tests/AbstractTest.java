@@ -3,13 +3,18 @@ package com.uniovi.tests;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.util.SeleniumUtils;
 import com.uniovi.tests.util.TestUtils;
 import org.aspectj.lang.annotation.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.List;
 
 public abstract class AbstractTest {
 
@@ -49,19 +54,27 @@ public abstract class AbstractTest {
     }
 
 
-    protected void NavigateToHome() {
-        PO_HomeView.clickOption(driver, "home", "class", "btn btn-primary");
+    protected void navigateToHome() {
+        List<WebElement> elemento = PO_View.checkElement(driver, "free",
+                "//a[contains(@href, '/')]");
+        elemento.get(0).click();
+        SeleniumUtils.esperarSegundos(driver, 1);
     }
 
-    protected void NavigateToLogin() {
+    protected void navigateToLogin() {
         PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
     }
 
-    protected void NavigateToSignUp() {
+    protected void navigateToSignUp() {
         PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
     }
 
-    protected void Logout() {
-        PO_NavView.clickOption(driver, "logout", "text", "Identifícate");
+    protected void logout() {
+        try {
+            PO_NavView.clickOption(driver, "logout", "text", "Identifícate");
+            SeleniumUtils.esperarSegundos(driver, 1);
+        }
+        catch (Exception e) {
+        }
     }
 }

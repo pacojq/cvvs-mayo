@@ -1,7 +1,6 @@
 package com.uniovi.tests.it;
 
 import com.uniovi.tests.AbstractTest;
-import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -18,7 +17,7 @@ public class SignUpTests extends AbstractTest {
     @Test
     public void TC1_TestSignUpCorrect() {
         //Vamos al formulario de registro
-        NavigateToSignUp();
+        navigateToSignUp();
 
         //Rellenamos el formulario.
         PO_RegisterView.fillForm(driver, "77777778A", "Josefo", "Perez", "77777",
@@ -34,12 +33,12 @@ public class SignUpTests extends AbstractTest {
             failed = true;
         }
 
-        Logout();
+        logout();
         if (failed) {
             Assert.fail();
         }
 
-        Logout();
+        logout();
     }
 
 
@@ -51,7 +50,7 @@ public class SignUpTests extends AbstractTest {
     @Test
     public void PR06() {
 
-        NavigateToSignUp();
+        navigateToSignUp();
 
         // Rellenamos el formulario.
         PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777");

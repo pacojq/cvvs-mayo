@@ -1,10 +1,7 @@
 package com.uniovi.tests.it;
 
 import com.uniovi.tests.AbstractTest;
-import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_LoginView;
-import com.uniovi.tests.pageobjects.PO_Properties;
-import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.pageobjects.*;
 import com.uniovi.tests.util.SeleniumUtils;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -16,33 +13,27 @@ public class NavigationTests extends AbstractTest {
 
     private void identify(String username, String password) {
 
-        // Logout si ya estamos identificados
-        try {
-            Logout();
-            SeleniumUtils.esperarSegundos(driver, 1);
-        }
-        catch (Exception e) {
-        }
-
-        NavigateToLogin();
+        // logout si ya estamos identificados
+        logout();
+        navigateToLogin();
         PO_LoginView.fillForm(driver, username, password);
         SeleniumUtils.esperarSegundos(driver, 1);
     }
 
     @Test
-    public void TC1_TestLoginPage_NotIdentified() {
-        NavigateToLogin();
+    public void TC01_TestLoginPage_NotIdentified() {
+        navigateToLogin();
         PO_View.checkElement(driver, "text", "Identifícate");
     }
 
     @Test
-    public void TC2_TestSignUpPage_NotIdentified() {
-        NavigateToSignUp();
+    public void TC02_TestSignUpPage_NotIdentified() {
+        navigateToSignUp();
         PO_View.checkElement(driver, "text", "Registráte como usuario");
     }
 
     @Test
-    public void TC3_TestLoginPage_RoleStudent() {
+    public void TC03_TestLoginPage_RoleStudent() {
 
         identify("99999990A", "123456");
 
@@ -57,7 +48,7 @@ public class NavigationTests extends AbstractTest {
     }
 
     @Test
-    public void TC4_TestSignUpPage_RoleProfessor() {
+    public void TC04_TestSignUpPage_RoleProfessor() {
 
         identify("99999993D", "123456");
 
@@ -72,21 +63,108 @@ public class NavigationTests extends AbstractTest {
     }
 
     @Test
-    public void TC5_TestHomePage_RoleAdmin() {
+    public void TC05_TestHomePage_RoleAdmin() {
 
         identify("99999988F", "123456");
 
-        NavigateToHome();
+        navigateToHome(); // TODO esto no deberia fallar
 
         PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
     }
 
     @Test
-    public void TC6_TestHomePage_NotIdentified() {
+    public void TC06_TestHomePage_NotIdentified() {
 
-        NavigateToHome();
+        // logout si ya estamos identificados
+        logout();
+
+        driver.navigate().to(URL);
 
         PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
+    }
+
+    @Test
+    public void TC07_TestListMarksPage_RoleStudent() {
+
+        identify("99999990A", "123456");
+
+        PO_NavView.selectMarksMenuListOption(driver);
+
+        // TODO esto no deberia fallar
+        PO_View.checkElement(driver, "text", "Las notas que actualmente figuran en el sistema son las siguientes");
+    }
+
+    @Test
+    public void TC08_TestListMarksPage_NotIdentified() {
+
+        // logout si ya estamos identificados
+        logout();
+
+        // No podemos navegar a la lista
+        try {
+            PO_NavView.selectMarksMenuListOption(driver);
+            Assert.fail();
+        }
+        catch (Exception e) {
+        }
+
+        // Navegar a la fuerza
+        driver.navigate().to(URL + "/mark/list");
+
+        // Nos ha redirigido a login
+        PO_View.checkElement(driver, "text", "Identifícate");
+    }
+
+
+    @Test
+    public void TC09_TestAddMarksPage_RoleProfessor() {
+
+        identify("99999993D", "123456");
+
+        PO_NavView.selectMarksMenuAddOption(driver);
+
+        PO_View.checkElement(driver, "text", "Agregar Nota"); // TODO esto no deberia fallar
+    }
+
+    @Test
+    public void TC10_TestAddMarksPage_RoleStudent() {
+
+        identify("99999990A", "123456");
+
+        // No podemos navegar a la lista
+        try {
+            PO_NavView.selectMarksMenuAddOption(driver);
+            Assert.fail();
+        }
+        catch (Exception e) {
+        }
+
+        // Navegar a la fuerza
+        driver.navigate().to(URL + "/mark/add");
+
+        // Nos ha redirigido al inicio
+        PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
+    }
+
+    @Test
+    public void TC11_TestAddMarksPage_NotIdentified() {
+
+        // logout si ya estamos identificados
+        logout();
+
+        // No podemos navegar a la lista
+        try {
+            PO_NavView.selectMarksMenuAddOption(driver);
+            Assert.fail();
+        }
+        catch (Exception e) {
+        }
+
+        // Navegar a la fuerza
+        driver.navigate().to(URL + "/mark/list");
+
+        // Nos ha redirigido a login
+        PO_View.checkElement(driver, "text", "Identifícate");
     }
 
 }
