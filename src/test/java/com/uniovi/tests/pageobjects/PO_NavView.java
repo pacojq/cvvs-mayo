@@ -58,6 +58,7 @@ public class PO_NavView extends PO_View {
 
 
 	public static void selectMarksMenuListOption(WebDriver driver) {
+
 		List<WebElement> lista = PO_View.checkElement(driver, "free",
 				"//li[contains(@id, 'marks-menu')]/a");
 		lista.get(0).click();
@@ -68,9 +69,17 @@ public class PO_NavView extends PO_View {
 	}
 
 	public static void selectMarksMenuAddOption(WebDriver driver) {
+
 		List<WebElement> lista = PO_View.checkElement(driver, "free",
 				"//li[contains(@id, 'marks-menu')]/a");
 		lista.get(0).click();
+
+		List<WebElement> elemento = PO_View.checkElement(driver, "free",
+				"//a[contains(@href, '/mark/add')]");
+		elemento.get(0).click();
+	}
+
+	public static void selectMarksAdd(WebDriver driver) {
 
 		List<WebElement> elemento = PO_View.checkElement(driver, "free",
 				"//a[contains(@href, '/mark/add')]");

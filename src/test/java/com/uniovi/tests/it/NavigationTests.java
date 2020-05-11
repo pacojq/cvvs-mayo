@@ -67,7 +67,7 @@ public class NavigationTests extends AbstractTest {
 
         identify("99999988F", "123456");
 
-        navigateToHome(); // TODO esto no deberia fallar
+        navigateToHome();
 
         PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
     }
@@ -90,8 +90,7 @@ public class NavigationTests extends AbstractTest {
 
         PO_NavView.selectMarksMenuListOption(driver);
 
-        // TODO esto no deberia fallar
-        PO_View.checkElement(driver, "text", "Las notas que actualmente figuran en el sistema son las siguientes");
+        SeleniumUtils.textoPresentePagina(driver, "Notas");
     }
 
     @Test
@@ -121,9 +120,9 @@ public class NavigationTests extends AbstractTest {
 
         identify("99999993D", "123456");
 
-        PO_NavView.selectMarksMenuAddOption(driver);
+        PO_NavView.selectMarksAdd(driver);
 
-        PO_View.checkElement(driver, "text", "Agregar Nota"); // TODO esto no deberia fallar
+        SeleniumUtils.textoPresentePagina(driver, "Agregar Nota");
     }
 
     @Test
